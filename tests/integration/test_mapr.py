@@ -147,7 +147,7 @@ class TestMapr(IMaprTest):
         {'menu': 'gene', 'value': 'CDC20', 'search_value': 'cdc'},
         {'menu': 'organism', 'value': 'Homo sapiens', 'search_value': 'homo'},
         {'menu': 'gene', 'value': "beta'Cop", 'search_value': "'"},
-        {'menu': 'gene', 'value': "123 (abc%def)", 'search_value': "%"},
+        {'menu': 'gene', 'value': "123 (abc\%def)", 'search_value': "%"},
     ))
     def test_autocomplete(self, ac):
         # test autocomplete
