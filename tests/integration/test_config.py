@@ -69,7 +69,7 @@ def wildcard_settings(settings):
                 "config": {
                     "default": ["Gene Symbol"],
                     "all": ["Gene Symbol", "Gene Identifier"],
-                    "ns": ["openmicroscopy.org/omero/bulk_annotations"],
+                    "ns": ["openmicroscopy.org/mapr/gene"],
                     "label": "Gene",
                     "case_sensitive": True,
                 }
@@ -79,7 +79,7 @@ def wildcard_settings(settings):
                 "config": {
                     "default": ["Phenotype"],
                     "all": ["Phenotype", "Phenotype Term Accession"],
-                    "ns": ["openmicroscopy.org/omero/bulk_annotations"],
+                    "ns": ["openmicroscopy.org/mapr/phenotype"],
                     "label": "Phenotype",
                     "wildcard": {
                         "enabled": False
@@ -91,7 +91,7 @@ def wildcard_settings(settings):
                 "config": {
                     "default": ["Organism"],
                     "all": ["Organism"],
-                    "ns": ["openmicroscopy.org/omero/bulk_annotations"],
+                    "ns": ["openmicroscopy.org/mapr/organism"],
                     "label": "Organism",
                     "wildcard": {
                         "enabled": True

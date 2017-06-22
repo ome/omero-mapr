@@ -24,7 +24,7 @@ before_script:
 
 script:
   - echo 'Tested in CI'
-#  - docker-compose -f docker/docker-compose.yml up --build --abort-on-container-exit
-#  - exitcode=$(docker inspect -f '{{.State.ExitCode}}' docker_maprtest_1)
-#  - docker-compose -f docker/docker-compose.yml rm -fv
-#  - exit $exitcode
+  - docker-compose -f docker/docker-compose.yml up --build --abort-on-container-exit
+  - exitcode=$(docker inspect -f '{{.State.ExitCode}}' docker_maprtest_1)
+  - docker-compose -f docker/docker-compose.yml rm -fv
+  - exit $exitcode

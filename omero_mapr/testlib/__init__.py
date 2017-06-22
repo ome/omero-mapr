@@ -28,7 +28,6 @@ from omero.rtypes import rstring, unwrap
 from omero.constants.namespaces import NSBULKANNOTATIONS
 from omero.util.populate_metadata import BulkToMapAnnotationContext
 from omero.util.populate_metadata import ParsingContext
-from omero.util.temp_files import create_path
 
 from omeroweb.testlib import IWebTest
 
@@ -38,22 +37,6 @@ class IMaprTest(IWebTest):
     """
     Extends IWebTest (ITest)
     """
-
-    def create_csv(
-        self,
-        col_names="Well,Well Type,Concentration",
-        row_data=("A1,Control,0", "A2,Treatment,10")
-    ):
-
-        csv_file_name = create_path("test", ".csv")
-        csv_file = open(csv_file_name, 'w')
-        try:
-            csv_file.write(col_names)
-            csv_file.write("\n")
-            csv_file.write("\n".join(row_data))
-        finally:
-            csv_file.close()
-        return str(csv_file_name)
 
     def set_name(self, obj, name):
         q = self.client.sf.getQueryService()
@@ -68,8 +51,8 @@ class IMaprTest(IWebTest):
             plate = self.importPlates(plateRows=row_count,
                                       plateCols=col_count)[0]
         except AttributeError:
-            plate = self.import_plates(plateRows=row_count,
-                                       plateCols=col_count)[0]
+            plate = self.import_plates(plate_rows=row_count,
+                                       plate_cols=col_count)[0]
         plate = self.set_name(plate, "Plate001")
         screen = ScreenI()
         screen.name = rstring("Screen001")
@@ -125,6 +108,6 @@ class IMaprTest(IWebTest):
         fileid = table_file_ann.file.id.val
 
         ctx = BulkToMapAnnotationContext(
-         self.client, self.screen.proxy(), fileid=fileid, cfg=cfg)
+            self.client, self.screen.proxy(), fileid=fileid, cfg=cfg)
         ctx.parse()
         ctx.write_to_omero()

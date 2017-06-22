@@ -48,7 +48,7 @@ def pytest_configure():
                 "config": {
                     "default": ["Gene Symbol"],
                     "all": ["Gene Symbol", "Gene Identifier"],
-                    "ns": ["openmicroscopy.org/omero/bulk_annotations"],
+                    "ns": ["openmicroscopy.org/mapr/gene"],
                     "label": "Gene",
                     "case_sensitive": True,
                 }
@@ -58,7 +58,7 @@ def pytest_configure():
                 "config": {
                     "default": ["Phenotype"],
                     "all": ["Phenotype", "Phenotype Term Accession"],
-                    "ns": ["openmicroscopy.org/omero/bulk_annotations"],
+                    "ns": ["openmicroscopy.org/mapr/phenotype"],
                     "label": "Phenotype",
                 }
             },
@@ -67,7 +67,7 @@ def pytest_configure():
                 "config": {
                     "default": ["Organism"],
                     "all": ["Organism"],
-                    "ns": ["openmicroscopy.org/omero/bulk_annotations"],
+                    "ns": ["openmicroscopy.org/mapr/organism"],
                     "label": "Organism",
                 }
             },

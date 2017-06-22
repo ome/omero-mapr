@@ -1,7 +1,7 @@
-Plate,Well Number,Well,Gene Identifier,Gene Symbol,Organism
-Plate001,1,A1,cdc14,CG7134,Homo sapiens
-Plate001,1,A2,cdc14,FBgn0031952,Homo sapiens
-Plate001,2,A3,CDC14,YFR028C,Mouse
-Plate001,2,A4,Cdc14,YFR028C,Mouse
-Plate001,3,A5,beta'Cop,apostrophe,Human
-Plate001,4,A6,percent,123 (abc%def),Some organism
+Plate,Well Number,Well,Gene Identifier,Gene Symbol,Organism,Channels
+Plate001,1,A1,cdc14,CG7134,Homo sapiens,1a
+Plate001,1,A2,cdc14,FBgn0031952,Homo sapiens,1b
+Plate001,2,A3,CDC14,YFR028C,Mouse,2a
+Plate001,2,A4,Cdc14,YFR028C,Mouse,2b
+Plate001,3,A5,beta'Cop,apostrophe,Human,3
+Plate001,4,A6,percent,123 (abc%def),Some organism,4
