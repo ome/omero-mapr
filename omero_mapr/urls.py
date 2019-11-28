@@ -33,7 +33,10 @@ reverse_lazy = lazy(reverse, str)
 
 # concatenate aliases to use in url regex
 CONFIG_REGEX = "(%s)" % ("|".join(mapr_settings.CONFIG))
-DEFAULT_CONFIG = list(mapr_settings.CONFIG.keys())[0]
+CONFIG_KEYS = list(mapr_settings.CONFIG.keys())
+DEFAULT_CONFIG = None
+if CONFIG_KEYS:
+    DEFAULT_CONFIG = CONFIG_KEYS[0]
 
 urlpatterns = []
 
