@@ -126,12 +126,11 @@ OME.linkify_element = function(elements) {
                     }
                     // If we're on e.g. "Gene Identifier URL" row...
                     if ( _key.match(new RegExp("url", "i"))  ) {
-                        // Find the next previous row where
-                        // row[N-1].key == row[N].key + ' URL'
-                        var $target = $row.prev('tr');
-                        while ($target.length > 0 && $target.children("td:nth-child(1)").text() !== _tkey) {
-                            $target = $target.prev('tr');
-                        }
+                        // Find the first row where
+                        // row[N].key == row.key + ' URL' && row[N].value doesnt have a span.favicon (i.e already processed)
+                        var $target = $row.parent().parent().find("tbody").find("tr").filter(function(){
+                             return $(this).children("td:nth-child(1)").text() === _tkey && $(this).children("td:nth-child(2)").find("span.favicon").length==0
+                        }).first()
                         if ($target.children("td:nth-child(1)").text() === _tkey) {
                             var $targetchvalue = $target.children("td:nth-child(2)");
                             // Take the Favicon html we created with iconify() above
