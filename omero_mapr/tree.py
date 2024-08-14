@@ -757,6 +757,7 @@ def marshal_images(conn, parent, parent_id,
 
     q = """
         select new map(image.id as id,
+            image.archived as archived,
             image.name as name,
             image.details.owner.id as ownerId,
             image as image_details_permissions,
@@ -804,11 +805,12 @@ def marshal_images(conn, parent, parent_id,
     for e in qs.projection(q, params, service_opts):
         e = unwrap(e)[0]
         d = [e["id"],
+             e["archived"],
              e["name"],
              e["ownerId"],
              e["image_details_permissions"],
              e["filesetId"]]
-        kwargs = {'conn': conn, 'row': d[0:5]}
+        kwargs = {'conn': conn, 'row': d[0:6]}
         if load_pixels:
             d = [e["sizeX"], e["sizeY"], e["sizeZ"], e["sizeT"]]
             kwargs['row_pixels'] = d
