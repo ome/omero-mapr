@@ -1,2 +1,7 @@
+#!/bin/bash
+
+set -e
+set -u
+
 # for test setup
 pip3 install omero-metadata
