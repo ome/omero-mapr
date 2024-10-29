@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source /infra/utils
+
+set -e
+set -u
+set -x
+set -o pipefail
+
+pip3 install omero-metadata
