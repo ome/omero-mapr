@@ -4,4 +4,4 @@ set -e
 set -u
 
 # for test setup
-/opt/omero/web/venv3/bin/pip3 install Jinja2
+/opt/omero/web/venv3/bin/pip3 install omero-metadata
