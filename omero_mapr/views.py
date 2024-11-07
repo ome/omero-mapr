@@ -673,10 +673,11 @@ def mapannotations_favicon(request, conn=None, **kwargs):
                     cache.hset('favdomain', _cache_key, icon)
             finally:
                 r.connection.close()
-        return HttpJPEGResponse(icon)
+        if icon is not None:
+            return HttpJPEGResponse(icon)
 
     with Image.open(mapr_settings.DEFAULT_FAVICON) as img:
-        img.thumbnail((16, 16), Image.ANTIALIAS)
+        img.thumbnail((16, 16))
         f = BytesIO()
         img.save(f, "PNG")
         f.seek(0)
