@@ -1,3 +1,9 @@
+0.5.3 (November 2024)
+---------------------
+
+- Fix default favicon ([#86](https://github.com/ome/omero-mapr/pull/86))
+- Improved documentation (Thanks to Jens Wendt) ([#82](https://github.com/ome/omero-mapr/pull/82))
+
 0.5.2 (June 2023)
 -----------------
 
