@@ -39,3 +39,33 @@ logger = logging.getLogger(__name__)
 @register.simple_tag
 def mapr_menu_config():
     return mark_safe(json.dumps(mapr_settings.CONFIG))
+
+
+@register.inclusion_tag("mapr/includes/right_panel_title.html",
+                        takes_context=True)
+def publication_title_from_kvp(context):
+    """
+    We try to load Key-Value pairs on an object in the 'manager' and show the
+    'Publication Title' value
+    """
+
+    manager = context.get("manager", None)
+    if not hasattr(manager, "_get_object"):
+        return {}
+
+    obj = context["manager"]._get_object()
+    # We only try to show Publication Title for Projects/Screens
+    if obj is None or obj.OMERO_CLASS not in ("Project", "Screen"):
+        return {}
+
+    title = ""
+    for ann in obj.listAnnotations():
+        if "MapAnnotationI" in str(ann.OMERO_TYPE):
+            for kvp in ann.getValue():
+                if kvp[0] == "Publication Title":
+                    title = kvp[1]
+                    break
+
+    return {
+        "title": title
+    }
