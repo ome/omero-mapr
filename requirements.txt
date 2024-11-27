@@ -1,2 +1,2 @@
 requests
-omero-web[redis]>=5.14.0
+omero-web[redis]>=5.16.0
