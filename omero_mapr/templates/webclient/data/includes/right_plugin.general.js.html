@@ -108,6 +108,7 @@ OME.linkify_element = function(elements) {
                 var $chvalue = $row.children("td:nth-child(2)");
                 var _key = $chlabel.text().trim();
                 var _val = $chvalue.text().trim();
+                var _valHTML = $chvalue.html();
                 var _tkey = _key.replace(/url/i, "").trim();
                 // Look for K-V pairs where the label is
                 // '<mapr-PK>' or '<mapr-PK> URL'
@@ -121,7 +122,8 @@ OME.linkify_element = function(elements) {
                         if ( _key in keys2menu && keys2menu[_key] !== undefined ) {
                             // Make Value into link to Internal mapr URL for the value, e.g. .../mapr/gene/?value=CDK5RAP2
                             var _url = location.protocol + "//" + location.host + "{% url 'maprindex' %}" + keys2menu[_key] +"/?value=" + encodeURIComponent(_val);
-                            $chvalue.html($chvalue.html().replace(_val, '<a href="' + _url + '">' + _val + '</a>'));
+                            // replace the original HTML value with a link to the internal mapr URL
+                            $chvalue.html($chvalue.html().replace(_valHTML, '<a href="' + _url + '">' + _val + '</a>'));
                         }
                     }
                     // If we're on e.g. "Gene Identifier URL" row...
