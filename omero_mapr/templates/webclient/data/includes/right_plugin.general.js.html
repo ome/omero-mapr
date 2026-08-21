@@ -93,17 +93,22 @@ OME.linkify_element = function(elements) {
         // Dict of {'Key Name': 'maprConfigId'}
         var keys2menu = {};
         $.each( mapr_menu, function( configId, config ) {
+            // Get namespace to allow key per namespace
+            var namespace = config['ns'][0];
+            keys2menu[namespace] = {};
             $.each( config['all'], function( j, maprKey ) {
                 // some configs support multiple Keys in 'all'
-                keys2menu[maprKey] = configId
+                keys2menu[namespace][maprKey] = configId
             });
         });
-        let menu2keys = Object.keys(keys2menu);
 
         // Look for rows that...
         elements.find("tbody").find("tr").each(function() {
             var $row = $(this);
             if (!$row.parent().parent().hasClass("editableKeyValueTable")) {
+                var namespace = $row.parent().parent().find("thead tr:first").attr('title');
+                var menu2keys = Object.keys(keys2menu[namespace] || {});
+                var nskeys2menu = keys2menu[namespace] || {};
                 var $chlabel = $row.children("td:nth-child(1)");
                 var $chvalue = $row.children("td:nth-child(2)");
                 var _key = $chlabel.text().trim();
@@ -118,7 +123,7 @@ OME.linkify_element = function(elements) {
                     // If the key is named in any mapr config,
                     // E.g. _key is "Gene Symbol" or "Gene Identifier" for "gene" mapr config
                     if ( $.inArray(_key, menu2keys) > -1 ) {
-                        if ( _key in keys2menu && keys2menu[_key] !== undefined ) {
+                        if ( _key in nskeys2menu && nskeys2menu[_key] !== undefined ) {
                             // Make Value into link to Internal mapr URL for the value, e.g. .../mapr/gene/?value=CDK5RAP2
                             var _url = location.protocol + "//" + location.host + "{% url 'maprindex' %}" + keys2menu[_key] +"/?value=" + encodeURIComponent(_val);
                             $chvalue.html($chvalue.html().replace(_val, '<a href="' + _url + '">' + _val + '</a>'));
